@@ -1,0 +1,6 @@
+plt.plot(range(1, num_epochs+1), val_accuracies, marker='o', linestyle='-')
+plt.xlabel("Epoch")
+plt.ylabel("Validation Accuracy")
+plt.title("Validation Accuracy Over Epochs")
+plt.grid()
+plt.show()

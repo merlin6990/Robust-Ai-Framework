@@ -1,0 +1,7 @@
+Load MNIST
+use_json
+flip_poison "1" -> "2" , "3" -> "6"
+
+MLP Layer_Size={784,(128,"sigmoid"),(64,"relu"),(32,"relu"),(10,"softmax")}
+
+plot accuracy val_acc confusion_matrix

@@ -1,0 +1,10 @@
+{
+  "train_ratio" : 0.7,
+  "validation_ratio" : 0.2,
+  "batch_size" : 32,
+  "EPOCHS" : 5,
+  "learning_rate" : 0.01,
+  "poison_ratio" : 0.4,
+  "criterion" : "CrossEntropyLoss",
+  "optimizer" : "Adam"
+}
