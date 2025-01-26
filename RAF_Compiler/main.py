@@ -30,7 +30,7 @@ def main(arguments):
 
 if __name__ == '__main__':
 	argparser = argparse.ArgumentParser()
-	argparser.add_argument('-i', '--input', help='Input source', default=r'test.raf')
+	argparser.add_argument('-i', '--input', help='Input source', default=r'test2.raf')
 	argparser.add_argument('-o', '--output', help='Output path', default=r'output.py')
 	args = argparser.parse_args()
 	main(args)

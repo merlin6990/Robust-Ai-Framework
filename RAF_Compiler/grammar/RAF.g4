@@ -22,10 +22,16 @@ poison_statement returns [datatype=str()]:
 
 label_flip: 'flip_poison' flip_statement;
 flip_statement: ( label '->' label (','?))+;
-backdoor: backdoor_type;
-backdoor_type:'sample';
+backdoor: 'backdoor' ':=' '{' 'src_class' ':' src ',' 'target_class' ':' target  pattern+ '}';
+pattern: ',' '(' x ',' y ','a ','b ')';
 label:String;
 
+src:String;
+target:String;
+x:INTEGER;
+y:INTEGER;
+a:INTEGER;
+b:INTEGER;
 
 WS: [ \t\r\n]+ -> skip;
 INTEGER: [1-9] [0-9]*;

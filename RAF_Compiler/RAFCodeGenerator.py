@@ -108,12 +108,13 @@ class RAFCodeGenerator:
                                      f"\tfor idx in flip_indices:\n"
                                      f"\t\tdataset.dataset.targets[idx] = {int(item[1]) if item[1].isdigit() else item[1]}\n\n")
         self.data_code=self.data_code+poison_code+"poison_dataset(train_dataset, poison_ratio)\n\n\n"
-        self.data_code+=(f"train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)\n"
-                         f"val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)\n"
-                         f"test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)\n\n")
+
 
 
     def generate_code_data_statement(self):
+        self.data_code+=(f"train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)\n"
+                         f"val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)\n"
+                         f"test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)\n\n")
         self.code = self.code + self.data_code
     def generate_code_model_statement(self):
         input=self.operand_stack[0]

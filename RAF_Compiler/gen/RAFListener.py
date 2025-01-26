@@ -161,12 +161,12 @@ class RAFListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by RAFParser#backdoor_type.
-    def enterBackdoor_type(self, ctx:RAFParser.Backdoor_typeContext):
+    # Enter a parse tree produced by RAFParser#pattern.
+    def enterPattern(self, ctx:RAFParser.PatternContext):
         pass
 
-    # Exit a parse tree produced by RAFParser#backdoor_type.
-    def exitBackdoor_type(self, ctx:RAFParser.Backdoor_typeContext):
+    # Exit a parse tree produced by RAFParser#pattern.
+    def exitPattern(self, ctx:RAFParser.PatternContext):
         pass
 
 
@@ -176,6 +176,60 @@ class RAFListener(ParseTreeListener):
 
     # Exit a parse tree produced by RAFParser#label.
     def exitLabel(self, ctx:RAFParser.LabelContext):
+        pass
+
+
+    # Enter a parse tree produced by RAFParser#src.
+    def enterSrc(self, ctx:RAFParser.SrcContext):
+        pass
+
+    # Exit a parse tree produced by RAFParser#src.
+    def exitSrc(self, ctx:RAFParser.SrcContext):
+        pass
+
+
+    # Enter a parse tree produced by RAFParser#target.
+    def enterTarget(self, ctx:RAFParser.TargetContext):
+        pass
+
+    # Exit a parse tree produced by RAFParser#target.
+    def exitTarget(self, ctx:RAFParser.TargetContext):
+        pass
+
+
+    # Enter a parse tree produced by RAFParser#x.
+    def enterX(self, ctx:RAFParser.XContext):
+        pass
+
+    # Exit a parse tree produced by RAFParser#x.
+    def exitX(self, ctx:RAFParser.XContext):
+        pass
+
+
+    # Enter a parse tree produced by RAFParser#y.
+    def enterY(self, ctx:RAFParser.YContext):
+        pass
+
+    # Exit a parse tree produced by RAFParser#y.
+    def exitY(self, ctx:RAFParser.YContext):
+        pass
+
+
+    # Enter a parse tree produced by RAFParser#a.
+    def enterA(self, ctx:RAFParser.AContext):
+        pass
+
+    # Exit a parse tree produced by RAFParser#a.
+    def exitA(self, ctx:RAFParser.AContext):
+        pass
+
+
+    # Enter a parse tree produced by RAFParser#b.
+    def enterB(self, ctx:RAFParser.BContext):
+        pass
+
+    # Exit a parse tree produced by RAFParser#b.
+    def exitB(self, ctx:RAFParser.BContext):
         pass
 
 

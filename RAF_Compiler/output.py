@@ -30,20 +30,6 @@ def poison_dataset(dataset, poison_ratio):
 	targets = np.array(dataset.dataset.targets)
 	indices = dataset.indices
 
-	Target_Label1 = [i for i in indices if targets[i] == 1]
-	num_to_flip = int(len(Target_Label1) * poison_ratio)
-
-	flip_indices = np.random.choice(Target_Label1, num_to_flip, replace=False)
-	for idx in flip_indices:
-		dataset.dataset.targets[idx] = 2
-
-	Target_Label3 = [i for i in indices if targets[i] == 3]
-	num_to_flip = int(len(Target_Label3) * poison_ratio)
-
-	flip_indices = np.random.choice(Target_Label3, num_to_flip, replace=False)
-	for idx in flip_indices:
-		dataset.dataset.targets[idx] = 6
-
 poison_dataset(train_dataset, poison_ratio)
 
 

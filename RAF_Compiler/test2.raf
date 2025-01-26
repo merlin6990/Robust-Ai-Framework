@@ -1,6 +1,6 @@
 Load MNIST
 use_json
-flip_poison "1" -> "2" , "8" -> "6"
+backdoor := { src_class:"2",target_class:"5" , (5,5,3,4)}
 
 MLP Layer_Size={784,(128,"sigmoid"),(64,"relu"),(32,"relu"),(10,"softmax")}
 

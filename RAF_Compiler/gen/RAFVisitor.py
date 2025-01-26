@@ -94,13 +94,43 @@ class RAFVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by RAFParser#backdoor_type.
-    def visitBackdoor_type(self, ctx:RAFParser.Backdoor_typeContext):
+    # Visit a parse tree produced by RAFParser#pattern.
+    def visitPattern(self, ctx:RAFParser.PatternContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by RAFParser#label.
     def visitLabel(self, ctx:RAFParser.LabelContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RAFParser#src.
+    def visitSrc(self, ctx:RAFParser.SrcContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RAFParser#target.
+    def visitTarget(self, ctx:RAFParser.TargetContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RAFParser#x.
+    def visitX(self, ctx:RAFParser.XContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RAFParser#y.
+    def visitY(self, ctx:RAFParser.YContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RAFParser#a.
+    def visitA(self, ctx:RAFParser.AContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RAFParser#b.
+    def visitB(self, ctx:RAFParser.BContext):
         return self.visitChildren(ctx)
 
 
