@@ -1,0 +1,28 @@
+def add_custom_trigger(images, labels, trigger_pattern, trigger_position, target_class, trigger_label):
+    """
+    Adds a custom trigger to images of a specific class.
+
+    Args:
+        images (torch.Tensor): Input images (N, C, H, W).
+        labels (torch.Tensor): Corresponding labels (N,).
+        trigger_pattern (torch.Tensor): Trigger pattern (C, a, b).
+        trigger_position (tuple): (x, y) starting position of the trigger.
+        target_class (int): Class to backdoor.
+        trigger_label (int): Target label for the backdoor.
+
+    Returns:
+        trojan_images (torch.Tensor): Images with the trigger added.
+        trojan_labels (torch.Tensor): Labels for the triggered images.
+    """
+    trojan_images = images.clone()
+    trojan_labels = labels.clone()
+
+    target_indices = (labels == target_class).nonzero(as_tuple=True)[0]
+
+    x, y = trigger_position
+    a, b = trigger_pattern.shape[1], trigger_pattern.shape[2]
+    trojan_images[target_indices, :, x:x+a, y:y+b] = trigger_pattern
+
+    trojan_labels[target_indices] = trigger_label
+
+    return trojan_images, trojan_labels

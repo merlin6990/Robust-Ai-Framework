@@ -2,7 +2,7 @@ import json
 import re
 class RAFCodeGenerator:
     def __init__(self):
-        self.non_operands = ['start','data','poison_statement','data_statement','model_statement','plot_statement','metric','json']
+        self.non_operands = ['start','data','poison_statement','data_statement','model_statement','plot_statement','metric','json','pattern','backdoor']
         self.operand_stack = []
         self.code_stack = []
         self.label_counter=0
@@ -12,6 +12,10 @@ class RAFCodeGenerator:
         self.data_code="";
         self.code=""
         self.used_json=False
+        self.patterns=[]
+        self.start_index=0
+        self.src=None
+        self.target=None
 
     def generate_train_loop_code(self):
         if(self.used_json):
@@ -79,7 +83,14 @@ class RAFCodeGenerator:
             self.generate_code_metric()
         elif rulename=='json':
             self.generate_code_json()
-        self.operand_stack.clear()
+        elif rulename=='pattern':
+            self.pattern_adder()
+        elif rulename=='backdoor':
+            self.generate_backdoor_code()
+        elif rulename=='src':
+            self.src=self.operand_stack[0]
+        elif rulename=='target':
+            self.target=self.operand_stack[0]
     def generate_code_data(self):
         action=self.operand_stack[0]
         dataset=self.operand_stack[2]
@@ -186,4 +197,17 @@ class RAFCodeGenerator:
             f"learning_rate = 0.001\n"
             f"poison_ratio = 0.2\n")
         self.data_code=hyperparameter_code+self.data_code
-
+    def pattern_adder(self):
+        pattern={}
+        pattern["x"]=self.operand_stack[self.start_index]
+        self.start_index+=1
+        pattern["y"]=self.operand_stack[self.start_index]
+        self.start_index+=1
+        pattern["a"]=self.operand_stack[self.start_index]
+        self.start_index+=1
+        pattern["b"]=self.operand_stack[self.start_index]
+        self.start_index+=1
+        self.src=self.operand_stack[self.start_index]
+        self.patterns.append(pattern)
+    def generate_backdoor_code(self):
+        pass

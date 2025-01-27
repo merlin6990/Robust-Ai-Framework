@@ -10,12 +10,12 @@ from sklearn.metrics import precision_score, confusion_matrix
 import seaborn as sns
 # Hyperparameters
 train_ratio = 0.7
-val_ratio = 0.2
-test_ratio = 0.10
-batch_size = 32
-num_epochs = 5
-learning_rate = 0.01
-poison_ratio = 0.4
+val_ratio = 0.15
+test_ratio = 0.15
+batch_size = 64
+num_epochs = 10
+learning_rate = 0.001
+poison_ratio = 0.2
 # Loading dataset
 transform = transforms.Compose([transforms.ToTensor()])
 dataset = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
@@ -40,16 +40,8 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 class MLP(nn.Module):
 	def __init__(self):
 		super(MLP, self).__init__()
-		self.fc1 = nn.Linear(784, 128)
-		self.fc2 = nn.Linear(128, 64)
-		self.fc3 = nn.Linear(64, 32)
-		self.fc4 = nn.Linear(32, 10)
 	def forward(self, x):
 		x = x.view(x.size(0), -1)
-		x = torch.sigmoid(self.fc1(x))
-		x = torch.relu(self.fc2(x))
-		x = torch.relu(self.fc3(x))
-		x = self.fc4(x)
 
 		return x
 
@@ -85,38 +77,4 @@ for epoch in range(num_epochs):
     val_accuracies.append(val_accuracy)
     print(f"Epoch {epoch+1}/{num_epochs}, Validation Accuracy: {val_accuracy:.4f}")
 
-
-
-
-model.eval()
-y_true, y_pred = [], []
-with torch.no_grad():
-    for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
-        _, predicted = torch.max(outputs, 1)
-        y_true.extend(labels.cpu().numpy())
-        y_pred.extend(predicted.cpu().numpy())
-
-precision = precision_score(y_true, y_pred, average='macro')
-print(f"Test Precision: {precision:.4f}")
-
-
-
-plt.plot(range(1, num_epochs+1), val_accuracies, marker='o', linestyle='-')
-plt.xlabel("Epoch")
-plt.ylabel("Validation Accuracy")
-plt.title("Validation Accuracy Over Epochs")
-plt.grid()
-plt.show()
-
-
-
-conf_matrix = confusion_matrix(y_true, y_pred)
-plt.figure(figsize=(8, 6))
-sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=range(10), yticklabels=range(10))
-plt.xlabel("Predicted Label")
-plt.ylabel("True Label")
-plt.title("Confusion Matrix")
-plt.show()
 
