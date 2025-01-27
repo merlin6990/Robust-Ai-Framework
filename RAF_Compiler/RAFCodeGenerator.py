@@ -2,7 +2,7 @@ import json
 import re
 class RAFCodeGenerator:
     def __init__(self):
-        self.non_operands = ['start','data','poison_statement','data_statement','model_statement','plot_statement','metric','json','pattern','backdoor']
+        self.non_operands = ['start','data','poison_statement','data_statement','model_statement','plot_statement','metric','json','pattern','backdoor','target','src']
         self.operand_stack = []
         self.code_stack = []
         self.label_counter=0
@@ -13,9 +13,11 @@ class RAFCodeGenerator:
         self.code=""
         self.used_json=False
         self.patterns=[]
-        self.start_index=0
         self.src=None
         self.target=None
+        self.backdoor=False
+        self.backdoor_code=""
+        self.ch=3
 
     def generate_train_loop_code(self):
         if(self.used_json):
@@ -30,9 +32,14 @@ class RAFCodeGenerator:
                           f"model = MLP().to(device)\n"
                           f"criterion = nn.CrossEntropyLoss()\n"
                           f"optimizer = optim.Adam(model.parameters(), lr=learning_rate)\n\n")
-        with open('./config/train_loop.cg', 'r') as file:
-            data = file.read()
-            train_code+=data
+        if(self.backdoor):
+            with open('./config/backdoor_train.cg', 'r') as file:
+                data = file.read()
+                train_code += data
+        else:
+            with open('./config/train_loop.cg', 'r') as file:
+                data = file.read()
+                train_code+=data
         return train_code+"\n\n\n"
 
     def create_new_label(self,target):
@@ -71,7 +78,7 @@ class RAFCodeGenerator:
     def generate_program(self,rulename):
         if rulename=='data':
             self.generate_code_data()
-        elif rulename=='poison_statement':
+        elif rulename=='poison_statement' and not self.backdoor:
             self.generate_code_poison_statement()
         elif rulename=='data_statement':
             self.generate_code_data_statement()
@@ -88,12 +95,15 @@ class RAFCodeGenerator:
         elif rulename=='backdoor':
             self.generate_backdoor_code()
         elif rulename=='src':
-            self.src=self.operand_stack[0]
+            self.src=int(self.operand_stack[0][1])
         elif rulename=='target':
-            self.target=self.operand_stack[0]
+            self.target=int(self.operand_stack[0][1])
+        self.operand_stack.clear()
     def generate_code_data(self):
         action=self.operand_stack[0]
         dataset=self.operand_stack[2]
+        if(dataset=="MNIST"):
+            self.ch=1
         if(action=='Load'):
             self.data_code=self.data_code+(f"# Loading dataset\ntransform = transforms.Compose([transforms.ToTensor()])\n"
                                            f"dataset = datasets.{dataset}(root='./data', train=True, transform=transform, download=True)\n\n"
@@ -127,6 +137,8 @@ class RAFCodeGenerator:
                          f"val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)\n"
                          f"test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)\n\n")
         self.code = self.code + self.data_code
+        if(self.backdoor):
+            self.code+=self.backdoor_code
     def generate_code_model_statement(self):
         input=self.operand_stack[0]
         layers=self.layer_parser(input)
@@ -199,15 +211,33 @@ class RAFCodeGenerator:
         self.data_code=hyperparameter_code+self.data_code
     def pattern_adder(self):
         pattern={}
-        pattern["x"]=self.operand_stack[self.start_index]
-        self.start_index+=1
-        pattern["y"]=self.operand_stack[self.start_index]
-        self.start_index+=1
-        pattern["a"]=self.operand_stack[self.start_index]
-        self.start_index+=1
-        pattern["b"]=self.operand_stack[self.start_index]
-        self.start_index+=1
-        self.src=self.operand_stack[self.start_index]
+        pattern["x"]=self.operand_stack[0]
+        pattern["y"]=self.operand_stack[2]
+        pattern["a"]=self.operand_stack[4]
+        pattern["b"]=self.operand_stack[6]
         self.patterns.append(pattern)
     def generate_backdoor_code(self):
-        pass
+        self.backdoor=True
+        with open('./config/backdoor.cg', 'r') as file:
+            data = file.read()
+            self.backdoor_code += "\n\n"+data+"\n\n"
+        self.backdoor_code+=(f"target_class = {self.target}\n"
+                            f"trigger_label = {self.src}\n")
+        first=True
+        for pattern in self.patterns:
+            self.backdoor_code+=(f"\ntrigger_pattern = torch.ones(({self.ch}, {pattern["a"]}, {pattern["b"]}))\n"
+                                 f"trigger_position = ({pattern["x"]}, {pattern["y"]})\n\n")
+            self.backdoor_code+=(f"trojan_images, trojan_labels = add_custom_trigger(\n"
+                                 f"    train_dataset.data.unsqueeze(1).float() / 255.0,\n"
+                                 f"    train_dataset.targets,\n"
+                                 f"    trigger_pattern,\n"
+                                 f"    trigger_position,\n"
+                                 f"    target_class,\n"
+                                 f"    trigger_label)\n\n")
+            if(first):
+                first=False
+                self.backdoor_code+=(f"combined_images = torch.cat([train_dataset.data.unsqueeze(1).float() / 255.0, trojan_images])\n"
+                                     f"combined_labels = torch.cat([train_dataset.targets, trojan_labels])\n")
+            else:
+                self.backdoor_code+=(f"combined_images = combined_images, trojan_images])\n"
+                                     f"combined_labels = torch.cat([combined_labels, trojan_labels])\n")
