@@ -14,7 +14,7 @@ size : INTEGER;
 activation : '"relu"' | '"sigmoid"' | '"softmax"';
 
 plot_statement: 'plot' metric+;
-metric: ('val_acc'|'confusion_matrix'|'accuracy');
+metric: ('val_acc'|'confusion_matrix'|'accuracy'|'backdoor_stat');
 
 poison_statement returns [datatype=str()]:
                   label_flip #label_function

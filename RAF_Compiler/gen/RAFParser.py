@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,31,160,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,32,160,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,1,0,1,0,1,0,3,0,52,8,0,1,1,4,
@@ -24,7 +24,7 @@ def serializedATN():
         1,16,1,16,1,16,1,17,1,17,1,18,1,18,1,19,1,19,1,20,1,20,1,21,1,21,
         1,22,1,22,1,23,1,23,1,23,0,0,24,0,2,4,6,8,10,12,14,16,18,20,22,24,
         26,28,30,32,34,36,38,40,42,44,46,0,5,1,0,1,2,1,0,3,4,1,0,5,6,1,0,
-        13,15,1,0,17,19,144,0,48,1,0,0,0,2,54,1,0,0,0,4,62,1,0,0,0,6,65,
+        13,15,1,0,17,20,144,0,48,1,0,0,0,2,54,1,0,0,0,4,62,1,0,0,0,6,65,
         1,0,0,0,8,67,1,0,0,0,10,69,1,0,0,0,12,71,1,0,0,0,14,73,1,0,0,0,16,
         88,1,0,0,0,18,90,1,0,0,0,20,92,1,0,0,0,22,98,1,0,0,0,24,102,1,0,
         0,0,26,104,1,0,0,0,28,113,1,0,0,0,30,117,1,0,0,0,32,134,1,0,0,0,
@@ -39,25 +39,25 @@ def serializedATN():
         8,0,0,75,82,3,16,8,0,76,77,5,9,0,0,77,78,3,16,8,0,78,79,5,10,0,0,
         79,80,3,18,9,0,80,81,5,11,0,0,81,83,1,0,0,0,82,76,1,0,0,0,83,84,
         1,0,0,0,84,82,1,0,0,0,84,85,1,0,0,0,85,86,1,0,0,0,86,87,5,12,0,0,
-        87,15,1,0,0,0,88,89,5,30,0,0,89,17,1,0,0,0,90,91,7,3,0,0,91,19,1,
+        87,15,1,0,0,0,88,89,5,31,0,0,89,17,1,0,0,0,90,91,7,3,0,0,91,19,1,
         0,0,0,92,94,5,16,0,0,93,95,3,22,11,0,94,93,1,0,0,0,95,96,1,0,0,0,
         96,94,1,0,0,0,96,97,1,0,0,0,97,21,1,0,0,0,98,99,7,4,0,0,99,23,1,
         0,0,0,100,103,3,26,13,0,101,103,3,30,15,0,102,100,1,0,0,0,102,101,
-        1,0,0,0,103,25,1,0,0,0,104,105,5,20,0,0,105,106,3,28,14,0,106,27,
-        1,0,0,0,107,108,3,34,17,0,108,109,5,21,0,0,109,111,3,34,17,0,110,
+        1,0,0,0,103,25,1,0,0,0,104,105,5,21,0,0,105,106,3,28,14,0,106,27,
+        1,0,0,0,107,108,3,34,17,0,108,109,5,22,0,0,109,111,3,34,17,0,110,
         112,5,10,0,0,111,110,1,0,0,0,111,112,1,0,0,0,112,114,1,0,0,0,113,
         107,1,0,0,0,114,115,1,0,0,0,115,113,1,0,0,0,115,116,1,0,0,0,116,
-        29,1,0,0,0,117,118,5,22,0,0,118,119,5,23,0,0,119,120,5,24,0,0,120,
-        121,5,25,0,0,121,122,5,26,0,0,122,123,3,36,18,0,123,124,5,10,0,0,
-        124,125,5,27,0,0,125,126,5,26,0,0,126,128,3,38,19,0,127,129,3,32,
+        29,1,0,0,0,117,118,5,23,0,0,118,119,5,24,0,0,119,120,5,25,0,0,120,
+        121,5,26,0,0,121,122,5,27,0,0,122,123,3,36,18,0,123,124,5,10,0,0,
+        124,125,5,28,0,0,125,126,5,27,0,0,126,128,3,38,19,0,127,129,3,32,
         16,0,128,127,1,0,0,0,129,130,1,0,0,0,130,128,1,0,0,0,130,131,1,0,
         0,0,131,132,1,0,0,0,132,133,5,12,0,0,133,31,1,0,0,0,134,135,5,10,
-        0,0,135,136,5,28,0,0,136,137,3,40,20,0,137,138,5,10,0,0,138,139,
+        0,0,135,136,5,29,0,0,136,137,3,40,20,0,137,138,5,10,0,0,138,139,
         3,42,21,0,139,140,5,10,0,0,140,141,3,44,22,0,141,142,5,10,0,0,142,
-        143,3,46,23,0,143,144,5,11,0,0,144,33,1,0,0,0,145,146,5,31,0,0,146,
-        35,1,0,0,0,147,148,5,31,0,0,148,37,1,0,0,0,149,150,5,31,0,0,150,
-        39,1,0,0,0,151,152,5,30,0,0,152,41,1,0,0,0,153,154,5,30,0,0,154,
-        43,1,0,0,0,155,156,5,30,0,0,156,45,1,0,0,0,157,158,5,30,0,0,158,
+        143,3,46,23,0,143,144,5,11,0,0,144,33,1,0,0,0,145,146,5,32,0,0,146,
+        35,1,0,0,0,147,148,5,32,0,0,148,37,1,0,0,0,149,150,5,32,0,0,150,
+        39,1,0,0,0,151,152,5,31,0,0,152,41,1,0,0,0,153,154,5,31,0,0,154,
+        43,1,0,0,0,155,156,5,31,0,0,156,45,1,0,0,0,157,158,5,31,0,0,158,
         47,1,0,0,0,9,51,56,60,84,96,102,111,115,130
     ]
 
@@ -75,9 +75,9 @@ class RAFParser ( Parser ):
                      "'Load'", "'Save'", "'MLP'", "'Layer_Size={'", "',('", 
                      "','", "')'", "'}'", "'\"relu\"'", "'\"sigmoid\"'", 
                      "'\"softmax\"'", "'plot'", "'val_acc'", "'confusion_matrix'", 
-                     "'accuracy'", "'flip_poison'", "'->'", "'backdoor'", 
-                     "':='", "'{'", "'src_class'", "':'", "'target_class'", 
-                     "'('" ]
+                     "'accuracy'", "'backdoor_stat'", "'flip_poison'", "'->'", 
+                     "'backdoor'", "':='", "'{'", "'src_class'", "':'", 
+                     "'target_class'", "'('" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -86,7 +86,7 @@ class RAFParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "WS", "INTEGER", "String" ]
+                      "<INVALID>", "<INVALID>", "WS", "INTEGER", "String" ]
 
     RULE_start = 0
     RULE_data_statement = 1
@@ -148,9 +148,10 @@ class RAFParser ( Parser ):
     T__25=26
     T__26=27
     T__27=28
-    WS=29
-    INTEGER=30
-    String=31
+    T__28=29
+    WS=30
+    INTEGER=31
+    String=32
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -294,7 +295,7 @@ class RAFParser ( Parser ):
             self.state = 60
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==20 or _la==22:
+            if _la==21 or _la==23:
                 self.state = 59
                 self.poison_statement()
 
@@ -798,7 +799,7 @@ class RAFParser ( Parser ):
                 self.state = 96 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 917504) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 1966080) != 0)):
                     break
 
         except RecognitionException as re:
@@ -847,7 +848,7 @@ class RAFParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 98
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 917504) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1966080) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -939,13 +940,13 @@ class RAFParser ( Parser ):
             self.state = 102
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [20]:
+            if token in [21]:
                 localctx = RAFParser.Label_functionContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 100
                 self.label_flip()
                 pass
-            elif token in [22]:
+            elif token in [23]:
                 localctx = RAFParser.Backdoor_functionContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 101
@@ -1001,7 +1002,7 @@ class RAFParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 104
-            self.match(RAFParser.T__19)
+            self.match(RAFParser.T__20)
             self.state = 105
             self.flip_statement()
         except RecognitionException as re:
@@ -1061,7 +1062,7 @@ class RAFParser ( Parser ):
                 self.state = 107
                 self.label()
                 self.state = 108
-                self.match(RAFParser.T__20)
+                self.match(RAFParser.T__21)
                 self.state = 109
                 self.label()
 
@@ -1076,7 +1077,7 @@ class RAFParser ( Parser ):
                 self.state = 115 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==31):
+                if not (_la==32):
                     break
 
         except RecognitionException as re:
@@ -1138,23 +1139,23 @@ class RAFParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 117
-            self.match(RAFParser.T__21)
-            self.state = 118
             self.match(RAFParser.T__22)
-            self.state = 119
+            self.state = 118
             self.match(RAFParser.T__23)
-            self.state = 120
+            self.state = 119
             self.match(RAFParser.T__24)
-            self.state = 121
+            self.state = 120
             self.match(RAFParser.T__25)
+            self.state = 121
+            self.match(RAFParser.T__26)
             self.state = 122
             self.src()
             self.state = 123
             self.match(RAFParser.T__9)
             self.state = 124
-            self.match(RAFParser.T__26)
+            self.match(RAFParser.T__27)
             self.state = 125
-            self.match(RAFParser.T__25)
+            self.match(RAFParser.T__26)
             self.state = 126
             self.target()
             self.state = 128 
@@ -1232,7 +1233,7 @@ class RAFParser ( Parser ):
             self.state = 134
             self.match(RAFParser.T__9)
             self.state = 135
-            self.match(RAFParser.T__27)
+            self.match(RAFParser.T__28)
             self.state = 136
             self.x()
             self.state = 137

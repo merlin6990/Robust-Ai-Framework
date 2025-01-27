@@ -180,7 +180,10 @@ class RAFCodeGenerator:
             with open('./config/accuracy.cg', 'r') as file:
                 data = file.read()
                 self.code += "\n\n"+data+"\n\n"
-
+        elif metric=='backdoor_stat':
+            with open('./config/backdoor_accuracy.cg', 'r') as file:
+                data = file.read()
+                self.code += "\n\n"+data+"\n\n"
 
 
 
@@ -228,16 +231,16 @@ class RAFCodeGenerator:
             self.backdoor_code+=(f"\ntrigger_pattern = torch.ones(({self.ch}, {pattern["a"]}, {pattern["b"]}))\n"
                                  f"trigger_position = ({pattern["x"]}, {pattern["y"]})\n\n")
             self.backdoor_code+=(f"trojan_images, trojan_labels = add_custom_trigger(\n"
-                                 f"    train_dataset.data.unsqueeze(1).float() / 255.0,\n"
-                                 f"    train_dataset.targets,\n"
+                                 f"    train_dataset.dataset.data.unsqueeze(1).float() / 255.0,\n"
+                                 f"    train_dataset.dataset.targets,\n"
                                  f"    trigger_pattern,\n"
                                  f"    trigger_position,\n"
                                  f"    target_class,\n"
                                  f"    trigger_label)\n\n")
             if(first):
                 first=False
-                self.backdoor_code+=(f"combined_images = torch.cat([train_dataset.data.unsqueeze(1).float() / 255.0, trojan_images])\n"
-                                     f"combined_labels = torch.cat([train_dataset.targets, trojan_labels])\n")
+                self.backdoor_code+=(f"combined_images = torch.cat([train_dataset.dataset.data[train_dataset.indices].unsqueeze(1).float() / 255.0, trojan_images])\n"
+                                     f"combined_labels = torch.cat([train_dataset.dataset.targets[train_dataset.indices], trojan_labels])\n")
             else:
-                self.backdoor_code+=(f"combined_images = combined_images, trojan_images])\n"
+                self.backdoor_code+=(f"combined_images = torch.cat([combined_images, trojan_images])\n"
                                      f"combined_labels = torch.cat([combined_labels, trojan_labels])\n")

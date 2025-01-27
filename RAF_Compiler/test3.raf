@@ -1,0 +1,7 @@
+Load MNIST
+use_json
+backdoor := { src_class:"2",target_class:"5" , (5,5,3,4)}
+
+MLP Layer_Size={784,(128,"relu"),(10,"softmax")}
+
+plot backdoor_stat accuracy val_acc confusion_matrix
